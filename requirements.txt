@@ -1,5 +1,4 @@
 torch
 Pillow
 torchvision
-io
 flask
