@@ -108,7 +108,6 @@ requests==2.26.0
 rope==0.21.1
 Rtree==0.9.7
 setuptools==58.0.4
-sip==4.19.13
 six==1.16.0
 snowballstemmer==2.2.0
 sortedcontainers==2.4.0
