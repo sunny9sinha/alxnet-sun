@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            DeepClassifier
+        </title>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    </head>
+    <script type="text/javascript">
+        function previewImage(){
+            if (document.getElementById('file').files.length !=0){
+                var im_file = document.getElementById('file').files[0]
+            }
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(im_file);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById('image').src = oFREvent.target.result;
+                document.getElementById('image').style.display = "block";
+                document.getElementById('Pr_Img').style.display = "block";
+                document.getElementById('result').style.display = "none";
+           };
+        }
+    </script>
+
+    <body>
+        <div style="text-align:center;">
+            <h1 style="text-align:center;color:blue;">Predict Class</h1>
+
+            <form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
+                <input type="file"  size="100" name="file" id= "file" required="required" accept="image/png,image/jpeg,image/jpg" multiple onchange="previewImage();"/>
+
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form>
+        <br>
+        <br>
+        <br><br><br>
+        <label id = "Pr_Img" style="text-align:center;display: none;"><b>Preview Image</b></label><br><br>
+        <img id="image" style="display: none;"/>
+        <br><br><br>
+        <h1><label id = "result" style="text-align:center;display: block;"><b>{{ prediction_text }}</b></label></h1>
+        </div>
+    </body>
+</html>
